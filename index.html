@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7e9;
+            color: #2e7d32;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .fact-display {
+            margin-top: 20px;
+            font-size: 1.2em;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crocodile Facts</h1>
+        <button id="factButton">Show Random Fact</button>
+        <div id="factDisplay" class="fact-display"></div>
+    </div>
+    <script>
+        const facts = [
+            "Crocodiles have been around for over 200 million years, making them one of the oldest living species.",
+            "They can hold their breath underwater for up to an hour.",
+            "Crocodiles have a powerful bite, with some species having a bite force of over 3,700 pounds per square inch.",
+            "They can replace each of their 80 teeth up to 50 times in their lifetime.",
+            "Crocodiles have a special valve in their throat that allows them to open their mouths underwater without drowning.",
+            "They are excellent swimmers and can reach speeds of up to 20 miles per hour in the water.",
+            "Crocodiles have a four-chambered heart, similar to birds and mammals, which is unique among reptiles.",
+            "They can live up to 70 years in the wild.",
+            "Crocodiles communicate with each other through a variety of vocalizations, including growls, hisses, and roars.",
+            "They have a highly developed sense of smell, which helps them locate prey even in the dark."
+        ];
+
+        let usedFacts = [];
+
+        document.getElementById('factButton').addEventListener('click', () => {
+            if (usedFacts.length === facts.length) {
+                usedFacts = [];
+            }
+
+            let fact;
+            do {
+                fact = facts[Math.floor(Math.random() * facts.length)];
+            } while (usedFacts.includes(fact));
+
+            usedFacts.push(fact);
+
+            const factDisplay = document.getElementById('factDisplay');
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.textContent = fact;
+                factDisplay.style.opacity = 1;
+            }, 500);
+        });
+    </script>
+</body>
+</html>
